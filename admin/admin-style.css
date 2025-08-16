@@ -295,6 +295,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
     overflow: hidden;
+    position: relative;
 }
 
 .inquiry-table {
@@ -480,43 +481,198 @@ body {
     color: #333;
 }
 
+/* モバイル用ヘッダー */
+.mobile-header {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: #333;
+    z-index: 999;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 20px;
+}
+
+.mobile-logo {
+    height: 35px;
+    width: auto;
+}
+
+/* ハンバーガーメニュー */
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* サイドバーオーバーレイ */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 998;
+}
+
+.sidebar-overlay.active {
+    display: block;
+}
+
 /* レスポンシブ */
 @media (max-width: 768px) {
+    .mobile-header {
+        display: block;
+    }
+    
+    .dashboard-page {
+        padding-top: 60px;
+    }
+    
     .sidebar {
-        width: 200px;
+        position: fixed;
+        top: 60px;
+        left: -250px;
+        height: calc(100vh - 60px);
+        transition: left 0.3s ease;
+        z-index: 999;
+    }
+    
+    .sidebar.active {
+        left: 0;
+    }
+    
+    .sidebar-logo {
+        display: none;
+    }
+    
+    .sidebar-header {
+        padding: 15px 20px;
     }
     
     .main-content {
-        margin-left: 200px;
+        margin-left: 0;
+        padding-top: 20px;
+        overflow-x: hidden;
     }
     
     .inquiry-stats {
         grid-template-columns: 1fr 1fr;
     }
     
+    .section-header {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+    }
+    
+    .section-header h1 {
+        font-size: 24px;
+        margin-bottom: 0;
+        text-align: center;
+    }
+    
+    .header-actions {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    /* テーブルコンテナの横スクロール設定 */
+    .inquiry-table-container {
+        overflow-x: auto;
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+    }
+    
     .inquiry-table {
         font-size: 14px;
+        min-width: 600px;
+        width: 100%;
     }
     
     .inquiry-table th,
     .inquiry-table td {
         padding: 10px;
+        white-space: nowrap;
+    }
+    
+    /* 操作ボタンを小さく */
+    .btn-view,
+    .btn-delete {
+        padding: 5px 12px;
+        font-size: 13px;
     }
 }
 
 @media (max-width: 576px) {
-    .sidebar {
-        transform: translateX(-100%);
-        transition: transform 0.3s;
-    }
-    
-    .sidebar.active {
-        transform: translateX(0);
-    }
-    
     .main-content {
-        margin-left: 0;
-        padding: 20px;
+        padding: 15px;
+    }
+    
+    .section-header h1 {
+        font-size: 20px;
+    }
+    
+    .btn-refresh {
+        padding: 6px 15px;
+        font-size: 13px;
+    }
+    
+    .last-updated {
+        font-size: 13px;
+    }
+    
+    .inquiry-table {
+        font-size: 13px;
+        min-width: 500px;
+    }
+    
+    .inquiry-table th,
+    .inquiry-table td {
+        padding: 8px;
+    }
+    
+    .btn-view,
+    .btn-delete {
+        padding: 4px 10px;
+        font-size: 12px;
     }
     
     .inquiry-stats {
