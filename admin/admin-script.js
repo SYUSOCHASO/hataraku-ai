@@ -41,6 +41,41 @@ if (document.querySelector('.dashboard-page')) {
     // ログインチェック
     checkAuth();
     
+    // モバイルメニューの処理
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const sidebar = document.getElementById('sidebar');
+    const sidebarOverlay = document.getElementById('sidebarOverlay');
+    
+    // ハンバーガーメニューのクリックイベント
+    if (hamburgerMenu) {
+        hamburgerMenu.addEventListener('click', function() {
+            toggleMobileMenu();
+        });
+    }
+    
+    // オーバーレイのクリックイベント
+    if (sidebarOverlay) {
+        sidebarOverlay.addEventListener('click', function() {
+            closeMobileMenu();
+        });
+    }
+    
+    // モバイルメニューの開閉
+    function toggleMobileMenu() {
+        hamburgerMenu.classList.toggle('active');
+        sidebar.classList.toggle('active');
+        sidebarOverlay.classList.toggle('active');
+        document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+    }
+    
+    // モバイルメニューを閉じる
+    function closeMobileMenu() {
+        hamburgerMenu.classList.remove('active');
+        sidebar.classList.remove('active');
+        sidebarOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
     // サイドバーナビゲーション
     const navLinks = document.querySelectorAll('.sidebar-nav a');
     const sections = document.querySelectorAll('.content-section');
@@ -61,6 +96,11 @@ if (document.querySelector('.dashboard-page')) {
                     section.classList.add('active');
                 }
             });
+            
+            // モバイルメニューを閉じる
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
         });
     });
     
