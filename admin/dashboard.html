@@ -8,9 +8,21 @@
     <link rel="stylesheet" href="admin-style.css">
 </head>
 <body class="dashboard-page">
+    <!-- モバイル用ヘッダー -->
+    <header class="mobile-header">
+        <div class="mobile-header-content">
+            <img src="../image/logo.png" alt="はたらくAI" class="mobile-logo">
+            <button class="hamburger-menu" id="hamburgerMenu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+    
     <div class="dashboard-container">
         <!-- サイドバー -->
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="sidebar-header">
                 <img src="../image/logo.png" alt="はたらくAI" class="sidebar-logo">
                 <h2>管理画面</h2>
@@ -79,6 +91,9 @@
             </section>
         </main>
     </div>
+
+    <!-- モバイル用オーバーレイ -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- お問い合わせ詳細モーダル -->
     <div id="inquiryModal" class="modal">
