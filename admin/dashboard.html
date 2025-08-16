@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理画面 | はたらくAI</title>
+    <link rel="icon" type="image/png" href="../image/favicon.png">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body class="dashboard-page">
+    <div class="dashboard-container">
+        <!-- サイドバー -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="../image/logo.png" alt="はたらくAI" class="sidebar-logo">
+                <h2>管理画面</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="active"><a href="#inquiries" data-section="inquiries">お問い合わせ管理</a></li>
+                    <li><a href="#settings" data-section="settings">設定</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#" id="logoutBtn" class="logout-btn">ログアウト</a>
+            </div>
+        </aside>
+
+        <!-- メインコンテンツ -->
+        <main class="main-content">
+            <!-- お問い合わせ管理セクション -->
+            <section id="inquiries" class="content-section active">
+                <div class="section-header">
+                    <h1>お問い合わせ管理</h1>
+                    <div class="header-actions">
+                        <button class="btn-refresh" id="refreshBtn">更新</button>
+                        <span class="last-updated">最終更新: <span id="lastUpdated">-</span></span>
+                    </div>
+                </div>
+                
+
+                <div class="inquiry-table-container">
+                    <table class="inquiry-table">
+                        <thead>
+                            <tr>
+                                <th>日時</th>
+                                <th>会社名</th>
+                                <th>お名前</th>
+                                <th>種別</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inquiryTableBody">
+                            <!-- JavaScriptで動的に生成 -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <!-- 設定セクション -->
+            <section id="settings" class="content-section">
+                <div class="section-header">
+                    <h1>設定</h1>
+                </div>
+                <div class="settings-content">
+                    <div class="setting-group">
+                        <h3>管理者情報</h3>
+                        <div class="setting-item">
+                            <label>ユーザー名:</label>
+                            <span id="currentUsername">admin</span>
+                        </div>
+                        <div class="setting-item">
+                            <label>最終ログイン:</label>
+                            <span id="lastLogin">-</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- お問い合わせ詳細モーダル -->
+    <div id="inquiryModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>お問い合わせ詳細</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="inquiryDetail">
+                <!-- JavaScriptで動的に生成 -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-close" onclick="document.getElementById('inquiryModal').style.display='none'">閉じる</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="admin-script.js"></script>
+</body>
+</html>
